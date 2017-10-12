@@ -31,7 +31,7 @@ var quizHolder = document.getElementById('quiz');
 var answerResults = document.getElementById('results');
 
 console.log(quizHolder);
-function generateQuiz(questions, quizHolder, answerResults) {
+function makeQuiz(questions, quizHolder, answerResults) {
 
 	function showResults(questions, quizHolder, answerResults) {
         var answerContainers = quizHolder.querySelectorAll('.answers');
@@ -54,7 +54,7 @@ function generateQuiz(questions, quizHolder, answerResults) {
 
         answerResults.innerHTML = numCorrect + ' out of ' + questions.length;
     }
-	
+
     function showQuestions(questions, quizHolder) {
 
         var makeQuestions = [];
@@ -81,4 +81,4 @@ function generateQuiz(questions, quizHolder, answerResults) {
         });
     });
 }
-generateQuiz(myQuestions, quizHolder, answerResults);
+makeQuiz(myQuestions, quizHolder, answerResults);
