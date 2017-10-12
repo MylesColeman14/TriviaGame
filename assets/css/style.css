@@ -6,8 +6,9 @@ body{
 	background-image: url('../images/quizbackground.jpeg');
 	color:white;
 	float: left;
-	margin-left: 60%;
+	margin-left: 50%;
 	border-style: solid;
 	border-width: 1px;
 	border-color: gradient;
+	width:50%;
 }

@@ -15,30 +15,41 @@ var myQuestions = [{
             c: '1931'
         },
         correctAnswer: 'b'
+    },
+    {
+    	question: "Who trained Batmen to Fight?",
+        answers: {
+            a: "Ra's al ghul",
+            b: 'Alfred Pennyworth',
+            c: 'James Gordon'
+        },
+        correctAnswer: 'a'
     }
+
 ];
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submitButton');
-console.log(quizContainer);
-function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
+var quizHolder = document.getElementById('quiz');
+var answerResults = document.getElementById('results');
 
-    function showQuestions(questions, quizContainer) {
+console.log(quizHolder);
+function generateQuiz(questions, quizHolder, answerResults) {
 
-        var output = [];
+    function showQuestions(questions, quizHolder) {
+
+        var makeQuestions = [];
         var answers;
         for (var i = 0; i < questions.length; i++) {
             answers = [];
             for (letter in questions[i].answers) {
                 answers.push('<label>' +'<input type="radio" name="question' + i + '" value="' + letter + '">' +letter + ': ' +questions[i].answers[letter] +'</label>');
             }
-            output.push('<div class="question">' + questions[i].question + '</div>' +'<div class="answers">' + answers.join('') + '</div>');
+            makeQuestions.push('<div class="question">' + questions[i].question + '</div>' +'<div class="answers">' + answers.join('') + '</div>');
         }
-        quizContainer.innerHTML = output.join('');
+        quizHolder.innerHTML = makeQuestions.join('');
+
     }
 
-    function showResults(questions, quizContainer, resultsContainer) {
-        var answerContainers = quizContainer.querySelectorAll('.answers');
+    function showResults(questions, quizHolder, answerResults) {
+        var answerContainers = quizHolder.querySelectorAll('.answers');
 
 
         var userAnswer = '';
@@ -49,23 +60,23 @@ function generateQuiz(questions, quizContainer, resultsContainer, submitButton) 
 
 
             userAnswer = (answerContainers[i].querySelector('input[name=question' + i + ']:checked') || {}).value;
-
+            console.log(userAnswer);
 
             if (userAnswer === questions[i].correctAnswer) {
                 numCorrect++;
             }
         }
 
-        resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+        answerResults.innerHTML = numCorrect + ' out of ' + questions.length;
     }
 
-    showQuestions(questions, quizContainer);
+    showQuestions(questions, quizHolder);
 
 
     $(document).ready(function() {
         $("#submitButton").on("click", function() {
-            showResults(questions, quizContainer, resultsContainer);
+            showResults(questions, quizHolder, answerResults);
         });
     });
 }
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+generateQuiz(myQuestions, quizHolder, answerResults);
