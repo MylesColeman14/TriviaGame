@@ -33,22 +33,7 @@ var answerResults = document.getElementById('results');
 console.log(quizHolder);
 function generateQuiz(questions, quizHolder, answerResults) {
 
-    function showQuestions(questions, quizHolder) {
-
-        var makeQuestions = [];
-        var answers;
-        for (var i = 0; i < questions.length; i++) {
-            answers = [];
-            for (letter in questions[i].answers) {
-                answers.push('<label>' +'<input type="radio" name="question' + i + '" value="' + letter + '">' +letter + ': ' +questions[i].answers[letter] +'</label>');
-            }
-            makeQuestions.push('<div class="question">' + questions[i].question + '</div>' +'<div class="answers">' + answers.join('') + '</div>');
-        }
-        quizHolder.innerHTML = makeQuestions.join('');
-
-    }
-
-    function showResults(questions, quizHolder, answerResults) {
+	function showResults(questions, quizHolder, answerResults) {
         var answerContainers = quizHolder.querySelectorAll('.answers');
 
 
@@ -69,6 +54,23 @@ function generateQuiz(questions, quizHolder, answerResults) {
 
         answerResults.innerHTML = numCorrect + ' out of ' + questions.length;
     }
+	
+    function showQuestions(questions, quizHolder) {
+
+        var makeQuestions = [];
+        var answers;
+        for (var i = 0; i < questions.length; i++) {
+            answers = [];
+            for (letter in questions[i].answers) {
+                answers.push('<label>' +'<input type="radio" name="question' + i + '" value="' + letter + '">' +letter + ': ' +questions[i].answers[letter] +'</label>');
+            }
+            makeQuestions.push('<div class="question">' + questions[i].question + '</div>' +'<div class="answers">' + answers.join('') + '</div>');
+        }
+        quizHolder.innerHTML = makeQuestions.join('');
+
+    }
+
+    
 
     showQuestions(questions, quizHolder);
 
